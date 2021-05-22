@@ -2,11 +2,7 @@ import React from 'react';
 import './checkout.styles.scss';
 
 import CheckoutItem from './../../components/checkout-item/checkout-item.component';
-import StripeCheckoutButton from './../../components/stripe-checkout/stripe-checkout.component';
-
-import {connect} from 'react-redux';
-import {selectCartItems, selectCartTotal} from './../../redux/cart/cart.selectors';
-import {createStructuredSelector} from 'reselect';
+import CustomButton from './../../components/custom-button/custom-button.component'; import {connect} from 'react-redux'; import {selectCartItems, selectCartTotal} from './../../redux/cart/cart.selectors'; import {createStructuredSelector} from 'reselect';
 
 
 const CheckoutPage = ({cartItems, total}) => (
@@ -36,7 +32,7 @@ const CheckoutPage = ({cartItems, total}) => (
         <div className='total'>
             <span>Total: ${total}</span>
         </div>
-        <StripeCheckoutButton price={total} />
+        <CustomButton onClick={``}>Order Now</CustomButton>
     </div>
 );
 
