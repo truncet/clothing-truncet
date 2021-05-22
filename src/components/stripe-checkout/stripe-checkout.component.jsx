@@ -16,7 +16,7 @@ const StripeCheckoutButton = ({price}) => {
 
     return (
         <StripeCheckout
-            label='Pay Now'
+            label='Order Now'
             name='Truncet Clothing Ltd'
             billingAddress
             shippingAddress
