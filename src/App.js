@@ -13,6 +13,7 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import {auth, createUserProfileDocument } from './firebase/firebase.utils';
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from './redux/user/user.selector';
+import {checkUserSession} from './redux/user/user.actions';
 
 
 class  App extends React.Component {
@@ -21,21 +22,10 @@ class  App extends React.Component {
   unSubscribeFromAuth = null;
 
   componentDidMount(){
-    const {setCurrentUser} = this.props;
-    this.unSubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
-      if (userAuth){
-        const userRef = createUserProfileDocument(userAuth);
-        (await userRef).onSnapshot(snapShot => { setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data()
-        })
-      })
-      }
-      else {
-        setCurrentUser( userAuth);
-      }
-      
-    });
+    const {checkUserSession} = this.props;
+
+    checkUserSession();
+
   }
 
   componentWillUnmount(){
@@ -62,7 +52,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-})
+  checkUserSession: () => dispatch(checkUserSession())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
