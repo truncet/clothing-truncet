@@ -3,7 +3,7 @@ import './checkout.styles.scss';
 
 import CheckoutItem from './../../components/checkout-item/checkout-item.component';
 import CustomButton from './../../components/custom-button/custom-button.component'; import {connect} from 'react-redux'; import {selectCartItems, selectCartTotal} from './../../redux/cart/cart.selectors'; import {createStructuredSelector} from 'reselect';
-
+import StripeCheckoutButton from '../../components/stripe-checkout/stripe-checkout.component'
 
 const CheckoutPage = ({cartItems, total}) => (
     <div className='checkout-page'>
@@ -32,7 +32,7 @@ const CheckoutPage = ({cartItems, total}) => (
         <div className='total'>
             <span>Total: ${total}</span>
         </div>
-        <CustomButton onClick={``}>Order Now</CustomButton>
+        <StripeCheckoutButton/>
     </div>
 );
 
